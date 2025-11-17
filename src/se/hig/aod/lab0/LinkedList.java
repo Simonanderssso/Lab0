@@ -1,13 +1,29 @@
 package se.hig.aod.lab0;
 
 public class LinkedList<T> implements List<T> {
+
+    private ListNode head;
+    private int size;
+
+    private class ListNode {
+        T data;
+        ListNode next;
+
+        ListNode(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
     @Override
     public boolean isEmpty() {
-        return false;
+        if (head == null) {
+            return true;
+        } else return false;
     }
 
     @Override
     public void clear() {
+
 
     }
 
@@ -18,7 +34,10 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void insertFirst(T t) {
-
+    ListNode newNode = new ListNode(t);
+    newNode.next = head;
+    head = newNode;
+    size++;
     }
 
     @Override
@@ -28,6 +47,12 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T removeFirst() {
+        if(isEmpty()){ throw new ListEmptyException("List is empty");
+            T value = head.data;
+            head = head.next;
+            size--;
+
+
         return null;
     }
 
@@ -38,7 +63,10 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T getFirst() {
-        return null;
+        if(isEmpty()) {
+            throw new ListEmptyException("List is empty");
+    }
+        return head.data;
     }
 
     @Override
