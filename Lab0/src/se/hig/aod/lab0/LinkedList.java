@@ -1,6 +1,6 @@
 package se.hig.aod.lab0;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> implements PrintableList<T> {
 
     private ListNode head;
 
@@ -13,6 +13,21 @@ public class LinkedList<T> implements List<T> {
         ListNode(T data) {
             this.data = data;
             this.next = null;
+        }
+
+        String toStringNodeRecursive() {
+            if (next == null) {
+                return data.toString();
+            }
+            return data.toString() + ", " + next.toStringNodeRecursive();
+
+        }
+
+        String toStringNodeReverseRecursive() {
+            if (next == null) {
+                return data.toString();  // sista noden
+            }
+            return next.toStringNodeReverseRecursive() + ", " + data.toString();
         }
     }
 
@@ -108,4 +123,20 @@ public class LinkedList<T> implements List<T> {
         }
         return current.data;
     }
+
+    public String toStringRecursive() {
+        if (isEmpty()) {
+            return "[]";
+        }
+        return "[" + head.toStringNodeRecursive() + "]";
+    }
+
+    public String toStringReverseRecursive() {
+        if (isEmpty()) {
+            return "[]";
+        }
+        return "[" + head.toStringNodeReverseRecursive() + "]";
+    }
+
+
 }
