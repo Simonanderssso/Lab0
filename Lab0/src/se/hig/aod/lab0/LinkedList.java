@@ -15,6 +15,7 @@ public class LinkedList<T> implements List<T> {
             this.next = null;
         }
     }
+
     @Override
     public boolean isEmpty() {
         return head == null;
@@ -28,24 +29,23 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public int numberOfElements() {
-
         return size;
     }
 
     @Override
     public void insertFirst(T t) {
-    ListNode newNode = new ListNode(t);
-    newNode.next = head;
-    head = newNode;
-    size++;
+        ListNode newNode = new ListNode(t);
+        newNode.next = head;
+        head = newNode;
+        size++;
     }
 
     @Override
     public void insertLast(T t) {
         if (isEmpty()) {
             insertFirst(t);
-        return;
-    }
+            return;
+        }
 
         ListNode current = head;
         while (current.next != null) {
@@ -59,18 +59,19 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T removeFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new ListEmptyException("List is empty");
         }
-            T value = head.data;
-            head = head.next;
-            size--;
-            return value;
+        T value = head.data;
+        head = head.next;
+        size--;
+        return value;
     }
 
     @Override
     public T removeLast() {
-            if(isEmpty()) { throw new ListEmptyException("List is empty");
+        if (isEmpty()) {
+            throw new ListEmptyException("List is empty");
         }
         if (head.next == null) {
             T value = head.data;
@@ -79,7 +80,7 @@ public class LinkedList<T> implements List<T> {
             return value;
         }
         ListNode current = head;
-        while (current.next.next != null){
+        while (current.next.next != null) {
             current = current.next;
         }
         T value = current.next.data;
@@ -90,7 +91,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T getFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new ListEmptyException("List is empty");
         }
         return head.data;
@@ -98,6 +99,13 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T getLast() {
-        return null;
+        if (isEmpty()) {
+            throw new ListEmptyException("List is empty");
+        }
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
     }
 }
