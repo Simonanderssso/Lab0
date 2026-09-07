@@ -1,9 +1,10 @@
 package se.hig.aod.lab0;
 
 public class LinkedList<T> implements PrintableList<T> {
-
+	// Pekar på första noden i listan
 	private ListNode head;
 
+	// Antalet element
 	private int size;
 
 	private class ListNode {
@@ -88,12 +89,14 @@ public class LinkedList<T> implements PrintableList<T> {
 		if (isEmpty()) {
 			throw new ListEmptyException("List is empty");
 		}
+		//om ett element
 		if (head.next == null) {
 			T value = head.data;
 			head = null;
 			size--;
 			return value;
 		}
+		// gå till näst sista noden
 		ListNode current = head;
 		while (current.next.next != null) {
 			current = current.next;

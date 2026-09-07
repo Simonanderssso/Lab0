@@ -201,9 +201,7 @@ class LinkedListTest {
 	 */
 	@Test
 	public void testRemoveLastOnEmptyList() {
-		assertThrows(ListEmptyException.class,
-				() -> listUnderTest.removeLast(),
-				"removeLast on empty list should throw ListEmptyException");
+		assertThrows(ListEmptyException.class, () -> listUnderTest.removeLast(), "removeLast on empty list should throw ListEmptyException");
 	}
 
 	/**
@@ -218,6 +216,43 @@ class LinkedListTest {
 		assertEquals(5, removed, "removeLast should return the last element");
 		assertEquals(4, listUnderTest.getLast(), "After removing last, new last should be the previous second last element");
 		assertEquals(4, listUnderTest.numberOfElements(), "List size should decrease by 1 after removeLast");
+	}
+
+	/**
+	 * Test method for {@link LinkedList#toStringRecursive()}.
+	 */
+	@Test
+	public void testToStringRecursiveOnEmptyList() {
+		assertEquals("[]", listUnderTest.toStringRecursive(), "Recursive toString on empty list should return []");
+	}
+
+	/**
+	 * Test method for {@link LinkedList#toStringRecursive()}.
+	 */
+	@Test
+	public void testToStringRecursiveOnInitializedList() {
+		initializeList();
+
+		assertEquals("[1, 2, 3, 4, 5]", listUnderTest.toStringRecursive(), "Recursive toString should list elements from first to last");
+	}
+
+	/**
+	 * Test method for {@link LinkedList#toStringReverseRecursive()}.
+	 */
+	@Test
+	public void testToStringReverseRecursiveOnEmptyList() {
+		assertEquals("[]", listUnderTest.toStringReverseRecursive(), "Reverse recursive toString on empty list should return []");
+	}
+
+	/**
+	 * Test method for {@link LinkedList#toStringReverseRecursive()}.
+	 */
+	@Test
+	public void testToStringReverseRecursiveOnInitializedList() {
+		initializeList();
+
+		assertEquals("[5, 4, 3, 2, 1]", listUnderTest.toStringReverseRecursive(), " Should reverse order");
+
 	}
 
 	private void initializeList() {
